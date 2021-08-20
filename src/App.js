@@ -1,7 +1,9 @@
 import { Component } from "react";
+import "./App.css";
 import Buttons from "./components/Buttons/Buttons";
 import Section from "./components/Section/Section";
 import Statics from "./components/Statics/Statics";
+import Notification from "./components/Notification/Notification";
 class App extends Component {
   state = {
     good: 0,
@@ -22,22 +24,29 @@ class App extends Component {
     return Math.round((this.state.good / this.totalFeedBack()) * 100 || 0);
   };
   render() {
+    const message = "No feedback given";
     return (
-      <div>
+      <div className="container">
         <Section title="Please leave feedback">
-          <Buttons
-            options={Object.keys(this.state)}
-            feedBack={this.handleFeedBack}
-          />
+          <div className="buttons__container">
+            <Buttons
+              options={Object.keys(this.state)}
+              feedBack={this.handleFeedBack}
+            />
+          </div>
         </Section>
         <Section title="Statistics">
-          <Statics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            totalFeedback={this.totalFeedBack()}
-            positiveFeedBack={this.totalPositiveFeedBack()}
-          />
+          {this.totalFeedBack() === 0 ? (
+            <Notification text={message} />
+          ) : (
+            <Statics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              totalFeedback={this.totalFeedBack()}
+              positiveFeedBack={this.totalPositiveFeedBack()}
+            />
+          )}
         </Section>
       </div>
     );
