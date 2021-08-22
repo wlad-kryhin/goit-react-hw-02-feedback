@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export default function Statics({
   good,
   neutral,
@@ -15,3 +16,10 @@ export default function Statics({
     </ul>
   );
 }
+Statics.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  totalFeedback: PropTypes.number,
+  positiveFeedBack: PropTypes.number,
+};

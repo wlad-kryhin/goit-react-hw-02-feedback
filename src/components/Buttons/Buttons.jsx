@@ -1,5 +1,5 @@
 import s from "./Buttons.module.css";
-
+import PropTypes from "prop-types";
 export default function Buttons({ options, feedBack }) {
   return options.map((option) => {
     return (
@@ -14,3 +14,7 @@ export default function Buttons({ options, feedBack }) {
     );
   });
 }
+Buttons.propTypes = {
+  options: PropTypes.object,
+  feedBack: PropTypes.func,
+};
